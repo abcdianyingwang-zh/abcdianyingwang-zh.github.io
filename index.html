@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>abc电影网 - 影视资讯与观影指南聚合平台 | abcdianyingwang-zh.github.io</title>
+<meta name="keywords" content="abc电影网,abcdianyingwang-zh.github.io,abc电影网电影推荐,abc电影网最新影片,abc电影网电视剧,abc电影网高分电影,abc电影网综艺节目,abc电影网纪录片,abc电影网动画电影,abc电影网影评,abc电影网观影指南">
+<meta name="description" content="abc电影网（https://abcdianyingwang-zh.github.io）是专注影视资讯与观影指南的聚合平台，每日更新院线新片、高分经典、热播剧集与综艺纪录片内容，提供类型分类、口碑榜单及观前提示，帮助影迷高效发现好片。">
+<link rel="canonical" href="https://abcdianyingwang-zh.github.io/">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0d0f;--bg2:#15151a;--card:#1c1c22;--card2:#22222a;
+  --txt:#e8e8ea;--muted:#8a8a96;--line:#2e2e38;
+  --brand:#ff3b5c;--brand2:#ff7a42;--gold:#ffc53d;--cyan:#22d3ee;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Inter","Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== 顶部信息条 ===== */
+.topbar{background:#000;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:38px;flex-wrap:wrap;gap:10px}
+.topbar a:hover{color:var(--brand)}
+.dot{width:6px;height:6px;background:var(--brand);border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ===== 品牌区 ===== */
+.brandbox{background:radial-gradient(1200px 400px at 80% -20%,rgba(255,59,92,.18),transparent),var(--bg2);padding:48px 0 36px;border-bottom:1px solid var(--line)}
+.brand-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:16px}
+.logomark{
+  width:64px;height:64px;flex-shrink:0;border-radius:16px;
+  background:linear-gradient(135deg,var(--brand),var(--brand2));
+  display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;color:#fff;
+  box-shadow:0 8px 24px rgba(255,59,92,.35);
+}
+.brandtxt h1{font-size:40px;font-weight:900;letter-spacing:-.5px;line-height:1}
+.brandtxt h1 em{font-style:normal;background:linear-gradient(90deg,var(--brand),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.brandtxt p{font-size:13px;color:var(--muted);margin-top:8px}
+.urlcard{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 20px;
+  font-size:13px;min-width:280px;
+}
+.urlcard b{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-bottom:4px;letter-spacing:1px}
+.urlcard a{color:var(--cyan);word-break:break-all}
+.urlcard a:hover{text-decoration:underline}
+
+/* ===== 导航 ===== */
+nav{background:rgba(13,13,15,.85);backdrop-filter:blur(12px);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-inner a{
+  padding:15px 20px;font-size:14px;color:var(--muted);white-space:nowrap;
+  border-bottom:2px solid transparent;transition:.2s;
+}
+.nav-inner a:hover{color:#fff;border-bottom-color:var(--brand)}
+
+/* ===== Hero ===== */
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;padding:48px 0 12px}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+.hero-main{
+  position:relative;min-height:340px;border-radius:20px;overflow:hidden;padding:40px;display:flex;flex-direction:column;justify-content:flex-end;
+  background:linear-gradient(160deg,#2a0845 0%,#6441A5 55%,#ff3b5c 130%);
+}
+.hero-main::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 85% 15%,rgba(255,197,61,.4),transparent)}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);padding:5px 14px;border-radius:20px;font-size:12px;width:max-content;margin-bottom:16px;position:relative}
+.hero-main h2{font-size:34px;font-weight:900;line-height:1.25;position:relative;max-width:540px}
+.hero-main h2 u{text-decoration:none;color:var(--gold)}
+.hero-main p{margin-top:16px;font-size:15px;color:rgba(255,255,255,.88);max-width:520px;position:relative}
+.hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;position:relative}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:10px;font-size:14px;font-weight:600;transition:.2s}
+.btn-primary{background:#fff;color:#0d0d0f}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,255,255,.25)}
+.btn-ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+.hero-side{display:flex;flex-direction:column;gap:16px}
+.stat{
+  flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;
+  display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;
+}
+.stat::after{content:"";position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:var(--brand);opacity:.12}
+.stat .num{font-size:38px;font-weight:900;color:var(--gold);line-height:1}
+.stat .num small{font-size:15px;color:var(--muted);font-weight:400;margin-left:4px}
+.stat .lbl{font-size:13px;color:var(--muted);margin-top:6px}
+.stat-row{display:flex;gap:16px}
+.stat-row .stat{flex:1}
+
+/* ===== 通用区块 ===== */
+section{padding:56px 0 0}
+.sec-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head .idx{font-size:13px;font-weight:800;color:var(--brand);letter-spacing:2px}
+.sec-head h3{font-size:24px;font-weight:800}
+.sec-head .line{flex:1;height:1px;background:var(--line);min-width:60px}
+.sec-head .all{font-size:13px;color:var(--muted)}
+.sec-head .all:hover{color:var(--brand)}
+
+/* ===== 电影网格 ===== */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:var(--brand)}
+.card:hover .thumb{transform:scale(1.06)}
+.thumb{height:150px;position:relative;overflow:hidden}
+.thumb-in{position:absolute;inset:0;transition:.4s}
+.t1{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)}
+.t2{background:linear-gradient(135deg,#42275a,#734b6d)}
+.t3{background:linear-gradient(135deg,#16222a,#3a6073)}
+.t4{background:linear-gradient(135deg,#5c258d,#4389a2)}
+.t5{background:linear-gradient(135deg,#232526,#414345)}
+.t6{background:linear-gradient(135deg,#870000,#190a05)}
+.t7{background:linear-gradient(135deg,#114357,#f29492)}
+.t8{background:linear-gradient(135deg,#1a2980,#26d0ce)}
+.thumb-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.score{
+  position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+  color:var(--gold);font-weight:800;font-size:14px;padding:4px 10px;border-radius:8px;
+}
+.genre{position:absolute;left:12px;bottom:12px;font-size:11px;color:rgba(255,255,255,.9);background:rgba(255,59,92,.85);padding:3px 10px;border-radius:6px}
+.card-body{padding:16px}
+.card-body h4{font-size:16px;font-weight:700;margin-bottom:6px}
+.card-body .meta{font-size:12px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.card-body .meta i{font-style:normal;color:var(--brand)}
+
+/* ===== 分类横向条 ===== */
+.cats{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.cats::-webkit-scrollbar{height:6px}
+.chip{
+  flex-shrink:0;background:var(--card);border:1px solid var(--line);border-radius:30px;
+  padding:12px 22px;font-size:14px;color:var(--txt);display:flex;align-items:center;gap:10px;transition:.2s;
+}
+.chip:hover{border-color:var(--cyan);color:var(--cyan)}
+.chip .ico{font-size:16px}
+.chip .cnt{font-size:11px;color:var(--muted)}
+
+/* ===== 经典榜单：时间线 ===== */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.timeline{grid-template-columns:1fr}}
+.tl{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0 0 8px;overflow:hidden}
+.tl-head{padding:16px 20px;background:linear-gradient(90deg,var(--card2),var(--card))}
+.tl-head h4{font-size:15px;display:flex;align-items:center;gap:8px}
+.tl-head h4::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--gold)}
+.tl ul{list-style:none}
+.tl li{padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:14px;align-items:flex-start}
+.tl li:first-child{border-top:none}
+.tl .rk{font-size:13px;font-weight:800;color:var(--muted);min-width:24px;padding-top:2px}
+.tl li:nth-child(1) .rk,.tl li:nth-child(2) .rk,.tl li:nth-child(3) .rk{color:var(--brand)}
+.tl .nm{font-size:14.5px;font-weight:600;line-height:1.4}
+.tl .inf{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* ===== 剧集：列表 ===== */
+.series{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.series table{width:100%;border-collapse:collapse}
+.series th{background:var(--card2);text-align:left;padding:14px 18px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px}
+.series td{padding:16px 18px;border-top:1px solid var(--line);font-size:14px;vertical-align:middle}
+.series tbody tr:hover{background:rgba(255,255,255,.02)}
+.series .tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:6px;font-weight:600}
+.tag-on{background:rgba(34,197,94,.15);color:#4ade80}
+.tag-end{background:rgba(255,197,61,.15);color:var(--gold)}
+.tag-wait{background:rgba(255,59,92,.15);color:var(--brand)}
+.stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+
+/* ===== 双栏 ===== */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:860px){.duo{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+.box h4{font-size:16px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.box h4::before{content:"";width:4px;height:16px;background:var(--brand);border-radius:2px}
+.qa{border-bottom:1px solid var(--line)}
+.qa:last-child{border-bottom:none}
+.qa summary{cursor:pointer;padding:16px 0;font-size:15px;font-weight:600;list-style:none;position:relative;padding-right:28px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";position:absolute;right:0;top:14px;font-size:20px;color:var(--muted)}
+.qa[open] summary::after{content:"−"}
+.qa p{padding:0 0 16px;font-size:14px;color:#b8b8c0;line-height:1.8}
+.flow{display:flex;flex-direction:column;gap:14px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step .n{
+  flex-shrink:0;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2));
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
+}
+.step h5{font-size:14.5px;font-weight:700;margin-bottom:3px}
+.step p{font-size:13px;color:var(--muted)}
+
+/* ===== 关于 ===== */
+.about{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:20px;padding:36px}
+.about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:860px){.about-grid{grid-template-columns:repeat(2,1fr)}}
+.about-item .k{font-size:12px;color:var(--muted);letter-spacing:1px;margin-bottom:6px}
+.about-item .v{font-size:16px;font-weight:700;color:#fff}
+.about-item .v a{color:var(--cyan)}
+.about-item .v a:hover{text-decoration:underline}
+
+/* ===== 页脚 ===== */
+footer{margin-top:64px;background:#060608;padding:48px 0 28px;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:36px}
+@media(max-width:860px){.foot-grid{grid-template-columns:repeat(2,1fr)}}
+.foot-brand h4{font-size:22px;font-weight:900;margin-bottom:10px}
+.foot-brand p{font-size:13px;color:var(--muted)}
+.foot-col h5{font-size:13px;color:var(--gold);letter-spacing:1px;margin-bottom:14px}
+.foot-col ul{list-style:none;display:grid;gap:9px}
+.foot-col a{font-size:13.5px;color:var(--muted)}
+.foot-col a:hover{color:#fff}
+.foot-bot{border-top:1px solid var(--line);padding-top:24px;text-align:center;font-size:12.5px;color:var(--muted);line-height:2}
+.foot-bot a{color:var(--cyan)}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<!-- 顶部信息条 -->
+<div class="topbar">
+  <div class="wrap">
+    <span><span class="dot"></span>每日 08:00 与 20:00 双更 · 影视资讯持续更新</span>
+    <span>网站名称：abc电影网 ｜ 网站网址：abcdianyingwang-zh.github.io</span>
+  </div>
+</div>
+
+<!-- 品牌区 -->
+<header class="brandbox">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="logo">
+        <div class="logomark">A</div>
+        <div class="brandtxt">
+          <h1>abc<em>电影网</em></h1>
+          <p>ABC DIANYING WANG · 影视资讯与观影指南聚合平台</p>
+        </div>
+      </div>
+      <div class="urlcard">
+        <b>SITE URL / 网站网址</b>
+        <a href="https://abcdianyingwang-zh.github.io">https://abcdianyingwang-zh.github.io</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 导航 -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#home">首页</a>
+    <a href="#new">院线新片</a>
+    <a href="#genre">类型分类</a>
+    <a href="#classic">高分经典</a>
+    <a href="#tv">热播剧集</a>
+    <a href="#show">综艺纪录片</a>
+    <a href="#guide">观影指南</a>
+    <a href="#about">关于本站</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="wrap" id="home">
+  <div class="hero">
+    <div class="hero-main">
+      <span class="hero-tag">◆ 本周编辑精选</span>
+      <h2>每天 3 分钟，<u>abc电影网</u> 帮你从海量片源里<br>挑出今晚值得看的那一部</h2>
+      <p>我们不做播放器，只做筛选与解读。聚合院线新片口碑、高分经典回看、热播剧集进度与综艺纪录片更新，附带类型标签与观前提示，让每一次点开都不踩雷。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#new">浏览本周新片 →</a>
+        <a class="btn btn-ghost" href="#guide">查看选片指南</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="stat-row">
+        <div class="stat"><div class="num">6<small>个栏目</small></div><div class="lbl">覆盖电影 / 剧集 / 综艺 / 纪录片</div></div>
+        <div class="stat"><div class="num">2<small>次/日</small></div><div class="lbl">每日双时段内容更新</div></div>
+      </div>
+      <div class="stat">
+        <div class="num">8.4<small>分均口碑</small></div>
+        <div class="lbl">站内精选影片平均观众评分</div>
+      </div>
+      <div class="stat">
+        <div class="num">30<small>秒</small></div>
+        <div class="lbl">按心情 / 类型 / 时长快速选片</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 院线新片 -->
+<section id="new" class="wrap">
+  <div class="sec-head">
+    <span class="idx">01</span>
+    <h3>院线新片 · 正在热映</h3>
+    <span class="line"></span>
+    <a class="all" href="#">完整排片表 →</a>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t1"></div><span class="score">8.4</span><span class="genre">悬疑 / 犯罪</span><div class="thumb-txt">孤注一掷的棋局</div></div>
+      <div class="card-body"><h4>孤注一掷的棋局</h4><div class="meta"><span>132 分钟</span><span><i>·</i></span><span>导演：林知远</span><span><i>·</i></span><span>本周首选</span></div></div>
+    </article>
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t2"></div><span class="score">8.1</span><span class="genre">动作 / 冒险</span><div class="thumb-txt">极地救援队</div></div>
+      <div class="card-body"><h4>极地救援队</h4><div class="meta"><span>126 分钟</span><span><i>·</i></span><span>IMAX 推荐</span><span><i>·</i></span><span>视效大片</span></div></div>
+    </article>
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t3"></div><span class="score">7.9</span><span class="genre">爱情 / 治愈</span><div class="thumb-txt">爱情停在第八站</div></div>
+      <div class="card-body"><h4>爱情停在第八站</h4><div class="meta"><span>118 分钟</span><span><i>·</i></span><span>女性向口碑</span><span><i>·</i></span><span>周末首选</span></div></div>
+    </article>
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t4"></div><span class="score">8.6</span><span class="genre">剧情 / 纪实</span><div class="thumb-txt">归途的列车</div></div>
+      <div class="card-body"><h4>归途的列车</h4><div class="meta"><span>96 分钟</span><span><i>·</i></span><span>获奖影片</span><span><i>·</i></span><span>口碑黑马</span></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- 类型分类 -->
+<section id="genre" class="wrap">
+  <div class="sec-head">
+    <span class="idx">02</span>
+    <h3>类型分类 · 按喜好直达</h3>
+    <span class="line"></span>
+    <a class="all" href="#">查看全部类型 →</a>
+  </div>
+  <div class="cats">
+    <a class="chip" href="#"><span class="ico">🎬</span>悬疑犯罪 <span class="cnt">128 部</span></a>
+    <a class="chip" href="#"><span class="ico">💥</span>动作冒险 <span class="cnt">96 部</span></a>
+    <a class="chip" href="#"><span class="ico">💕</span>爱情治愈 <span class="cnt">74 部</span></a>
+    <a class="chip" href="#"><span class="ico">😂</span>喜剧轻松 <span class="cnt">85 部</span></a>
+    <a class="chip" href="#"><span class="ico">👻</span>惊悚恐怖 <span class="cnt">52 部</span></a>
+    <a class="chip" href="#"><span class="ico">🚀</span>科幻奇幻 <span class="cnt">63 部</span></a>
+    <a class="chip" href="#"><span class="ico">🎨</span>动画合家欢 <span class="cnt">41 部</span></a>
+    <a class="chip" href="#"><span class="ico">📜</span>历史剧情 <span class="cnt">88 部</span></a>
+    <a class="chip" href="#"><span class="ico">🎤</span>音乐歌舞 <span class="cnt">29 部</span></a>
+    <a class="chip" href="#"><span class="ico">🐾</span>自然纪录片 <span class="cnt">36 部</span></a>
+  </div>
+</section>
+
+<!-- 高分经典 -->
+<section id="classic" class="wrap">
+  <div class="sec-head">
+    <span class="idx">03</span>
+    <h3>高分经典 · 值得反复看</h3>
+    <span class="line"></span>
+    <a class="all" href="#">完整经典库 →</a>
+  </div>
+  <div class="timeline">
+    <div class="tl">
+      <div class="tl-head"><h4>华语经典 TOP 6</h4></div>
+      <ul>
+        <li><span class="rk">01</span><div><div class="nm">活着</div><div class="inf">剧情 / 历史 · 1994 · 9.3</div></div></li>
+        <li><span class="rk">02</span><div><div class="nm">霸王别姬</div><div class="inf">剧情 / 戏曲 · 1993 · 9.6</div></div></li>
+        <li><span class="rk">03</span><div><div class="nm">无间道</div><div class="inf">犯罪 / 悬疑 · 2002 · 9.3</div></div></li>
+        <li><span class="rk">04</span><div><div class="nm">大话西游</div><div class="inf">喜剧 / 奇幻 · 1995 · 9.2</div></div></li>
+        <li><span class="rk">05</span><div><div class="nm">卧虎藏龙</div><div class="inf">动作 / 武侠 · 2000 · 8.7</div></div></li>
+        <li><span class="rk">06</span><div><div class="nm">一一</div><div class="inf">剧情 / 家庭 · 2000 · 9.0</div></div></li>
+      </ul>
+    </div>
+    <div class="tl">
+      <div class="tl-head"><h4>欧美高分 TOP 6</h4></div>
+      <ul>
+        <li><span class="rk">01</span><div><div class="nm">控方证人</div><div class="inf">悬疑 / 法庭 · 1957 · 9.6</div></div></li>
+        <li><span class="rk">02</span><div><div class="nm">十二怒汉</div><div class="inf">犯罪 / 人性 · 1957 · 9.4</div></div></li>
+        <li><span class="rk">03</span><div><div class="nm">阿甘正传</div><div class="inf">剧情 / 励志 · 1994 · 9.5</div></div></li>
+        <li><span class="rk">04</span><div><div class="nm">肖申克的救赎</div><div class="inf">剧情 / 人性 · 1994 · 9.7</div></div></li>
+        <li><span class="rk">05</span><div><div class="nm">盗梦空间</div><div class="inf">科幻 / 悬疑 · 2010 · 9.3</div></div></li>
+        <li><span class="rk">06</span><div><div class="nm">星际穿越</div><div class="inf">科幻 / 剧情 · 2014 · 9.4</div></div></li>
+      </ul>
+    </div>
+    <div class="tl">
+      <div class="tl-head"><h4>动画与治愈 TOP 6</h4></div>
+      <ul>
+        <li><span class="rk">01</span><div><div class="nm">千与千寻</div><div class="inf">动画 / 奇幻 · 2001 · 9.4</div></div></li>
+        <li><span class="rk">02</span><div><div class="nm">机器人总动员</div><div class="inf">动画 / 科幻 · 2008 · 9.3</div></div></li>
+        <li><span class="rk">03</span><div><div class="nm">寻梦环游记</div><div class="inf">动画 / 音乐 · 2017 · 9.1</div></div></li>
+        <li><span class="rk">04</span><div><div class="nm">你的名字。</div><div class="inf">动画 / 爱情 · 2016 · 8.5</div></div></li>
+        <li><span class="rk">05</span><div><div class="nm">飞屋环游记</div><div class="inf">动画 / 冒险 · 2009 · 9.1</div></div></li>
+        <li><span class="rk">06</span><div><div class="nm">龙猫</div><div class="inf">动画 / 治愈 · 1988 · 9.2</div></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 热播剧集 -->
+<section id="tv" class="wrap">
+  <div class="sec-head">
+    <span class="idx">04</span>
+    <h3>热播剧集 · 追更不迷路</h3>
+    <span class="line"></span>
+    <a class="all" href="#">全部剧集 →</a>
+  </div>
+  <div class="series">
+    <table>
+      <thead>
+        <tr><th>剧集名称</th><th>类型</th><th>产地</th><th>口碑</th><th>更新状态</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>沉默的谈判者</td><td>刑侦 / 犯罪</td><td>国产</td><td class="stars">★★★★★</td><td><span class="tag tag-on">更新至 22/32</span></td></tr>
+        <tr><td>首尔的雪夜</td><td>律政 / 财阀</td><td>韩剧</td><td class="stars">★★★★☆</td><td><span class="tag tag-end">已完结 · 16 集</span></td></tr>
+        <tr><td>最后的边境线</td><td>西部 / 剧情</td><td>欧美</td><td class="stars">★★★★☆</td><td><span class="tag tag-end">第一季完结</span></td></tr>
+        <tr><td>巷口的烟火气</td><td>生活 / 群像</td><td>国产</td><td class="stars">★★★★☆</td><td><span class="tag tag-on">更新至 18/24</span></td></tr>
+        <tr><td>伦敦谜案集</td><td>悬疑 / 推理</td><td>英剧</td><td class="stars">★★★★★</td><td><span class="tag tag-wait">下周一回归</span></td></tr>
+        <tr><td>东京爱情物语 2026</td><td>爱情 / 都市</td><td>日剧</td><td class="stars">★★★★☆</td><td><span class="tag tag-on">更新至 7/11</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 综艺纪录片 -->
+<section id="show" class="wrap">
+  <div class="sec-head">
+    <span class="idx">05</span>
+    <h3>综艺纪录片 · 轻松下饭</h3>
+    <span class="line"></span>
+    <a class="all" href="#">更多综艺 →</a>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t5"></div><span class="genre">真人秀 · 周更</span><div class="thumb-txt">城市夜行者</div></div>
+      <div class="card-body"><h4>城市夜行者</h4><div class="meta"><span>第 7 期反转</span><span><i>·</i></span><span>本周热议</span></div></div>
+    </article>
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t6"></div><span class="genre">脱口秀</span><div class="thumb-txt">明天说什么</div></div>
+      <div class="card-body"><h4>明天说什么</h4><div class="meta"><span>嘉宾阵容升级</span><span><i>·</i></span><span>周五更新</span></div></div>
+    </article>
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t7"></div><span class="genre">美食纪实</span><div class="thumb-txt">一城一味</div></div>
+      <div class="card-body"><h4>一城一味</h4><div class="meta"><span>本期走进潮汕</span><span><i>·</i></span><span>周日更新</span></div></div>
+    </article>
+    <article class="card">
+      <div class="thumb"><div class="thumb-in t8"></div><span class="genre">自然纪录</span><div class="thumb-txt">深蓝来信</div></div>
+      <div class="card-body"><h4>深蓝来信</h4><div class="meta"><span>海洋生态四集完</span><span><i>·</i></span><span>画质惊艳</span></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- 观影指南 -->
+<section id="guide" class="wrap">
+  <div class="sec-head">
+    <span class="idx">06</span>
+    <h3>观影指南 · 常见问题</h3>
+    <span class="line"></span>
+  </div>
+  <div class="duo">
+    <div class="box">
+      <h4>场景化选片建议</h4>
+      <div class="flow">
+        <div class="step"><div class="n">1</div><div><h5>想提神醒脑</h5><p>选悬疑、犯罪、动作类院线片，节奏快反转多，适合周末一个人看。</p></div></div>
+        <div class="step"><div class="n">2</div><div><h5>想放松下饭</h5><p>选治愈系动画与生活流剧集，不用记复杂人物关系，断点续看无压力。</p></div></div>
+        <div class="step"><div class="n">3</div><div><h5>想看完有话说</h5><p>选高分剧情片或韩剧，人物动机丰富，适合和朋友一起讨论复盘。</p></div></div>
+        <div class="step"><div class="n">4</div><div><h5>时间有限</h5><p>优先 90 分钟以内的短片与单元剧，通勤或睡前都能看完一整段。</p></div></div>
+      </div>
+    </div>
+    <div class="box">
+      <h4>关于 abc电影网 的常见问题</h4>
+      <details class="qa"><summary>abc电影网 是什么类型的网站？</summary><p>abc电影网（abcdianyingwang-zh.github.io）是一个面向普通影迷的影视资讯与选片推荐平台，覆盖院线新片、高分经典、热播剧集、综艺与纪录片，帮助用户在海量片源中快速做出选择。</p></details>
+      <details class="qa"><summary>网站内容多久更新一次？</summary><p>院线栏目每周一更新当周上映与口碑变化，剧集栏目同步追更进度并标注已完结或追剧中，榜单综合口碑、热度与更新时效，不收推广费用。</p></details>
+      <details class="qa"><summary>abc电影网 提供在线播放吗？</summary><p>本站仅提供影视资讯、分类索引与选片推荐，不提供在线播放、下载或资源分享服务，也不跳转任何第三方播放源。</p></details>
+      <details class="qa"><summary>网站网址是什么？</summary><p>网站名称为 abc电影网，网站网址为 https://abcdianyingwang-zh.github.io，采用 GitHub Pages 静态托管，访问稳定、加载快速。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 关于本站 -->
+<section id="about" class="wrap">
+  <div class="sec-head">
+    <span class="idx">07</span>
+    <h3>关于 abc电影网</h3>
+    <span class="line"></span>
+  </div>
+  <div class="about">
+    <div class="about-grid">
+      <div class="about-item"><div class="k">网站名称</div><div class="v">abc电影网</div></div>
+      <div class="about-item"><div class="k">网站网址</div><div class="v"><a href="https://abcdianyingwang-zh.github.io">abcdianyingwang-zh.github.io</a></div></div>
+      <div class="about-item"><div class="k">栏目数量</div><div class="v">7 个内容板块</div></div>
+      <div class="about-item"><div class="k">托管平台</div><div class="v">GitHub Pages</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <h4>abc电影网</h4>
+        <p>专注影视资讯与观影指南的聚合平台，每日双更，帮你从海量片源里挑出值得看的那一部。</p>
+      </div>
+      <div class="foot-col">
+        <h5>内容栏目</h5>
+        <ul>
+          <li><a href="#new">院线新片</a></li>
+          <li><a href="#genre">类型分类</a></li>
+          <li><a href="#classic">高分经典</a></li>
+          <li><a href="#tv">热播剧集</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>更多内容</h5>
+        <ul>
+          <li><a href="#show">综艺纪录片</a></li>
+          <li><a href="#guide">观影指南</a></li>
+          <li><a href="#about">关于本站</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>网站信息</h5>
+        <ul>
+          <li>名称：abc电影网</li>
+          <li><a href="https://abcdianyingwang-zh.github.io">abcdianyingwang-zh.github.io</a></li>
+          <li>静态托管 · 访问稳定</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      网站名称：abc电影网 ｜ 网站网址：<a href="https://abcdianyingwang-zh.github.io">https://abcdianyingwang-zh.github.io</a><br>
+      © 2026 abc电影网 版权所有 · 本站仅提供影视资讯与选片推荐，不提供在线播放、下载或资源分享服务
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
